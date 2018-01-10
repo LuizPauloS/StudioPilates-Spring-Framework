@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+	
+<nav class="navbar navbar-inverse navbar-static-top">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse"
+				data-target="#myNavbar">
+				<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" th:href="@{/home}"> 
+				<img alt="Studio Le Pilates" th:src="@{/images/LogoStudioPilates.png}" />
+			</a>
+		</div>
+		<div class="collapse navbar-collapse" id="myNavbar">
+			<ul class="nav navbar-nav navbar-left">
+				<li>
+					<p class="navbar-text" th:text="${#authentication.name}" th:title="|Usuário logado ${#authentication.name}|"></p>
+				</li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li><a th:href="@{/home}"><span class="glyphicon glyphicon-home icone-menu" aria-hidden="true"></span>Home</a></li>
+				<li class="dropdown" sec:authorize-url="/pacientes/novo"><a class="dropdown-toggle"
+					data-toggle="dropdown" role="button" aria-haspopup="true"
+					aria-expanded="false"> <span
+						class="glyphicon glyphicon-floppy-disk icone-menu"
+						aria-hidden="true"></span> Cadastros<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li sec:authorize-url="/pacientes/novo"><a th:href="@{/pacientes/novo}">
+							<span class="glyphicon glyphicon-user icone-menu"></span>Paciente</a></li>
+						<li sec:authorize-url="/pagamentos/novo"><a th:href="@{/pagamentos/novo}">
+							<span class="glyphicon glyphicon-credit-card icone-menu"></span>Pagamento</a></li>
+					</ul></li>
+				<li class="dropdown" sec:authorize-url="/pacientes"><a class="dropdown-toggle"
+					data-toggle="dropdown" role="button" aria-haspopup="true"
+					aria-expanded="false"> <span
+						class="glyphicon glyphicon-search icone-menu"
+						aria-hidden="true"> </span>Pesquisas<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li sec:authorize-url="/pacientes"><a th:href="@{/pacientes}">
+							<span class="glyphicon glyphicon-user icone-menu"></span>Pacientes</a></li>
+						<li sec:authorize-url="/pagamentos"><a th:href="@{/pagamentos}">
+							<span class="glyphicon glyphicon-credit-card icone-menu"></span>Pagamentos</a></li>
+					</ul>
+				</li>
+				<li class="dropdown" sec:authorize-url="/relatorios/pacientes"><a class="dropdown-toggle"
+					data-toggle="dropdown" role="button" aria-haspopup="true"
+					aria-expanded="false"> <span
+						class="glyphicon glyphicon-print icone-menu"
+						aria-hidden="true"> </span>Relatórios<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li sec:authorize-url="/relatorios/pacientes"><a th:href="@{/relatorios/pacientes}">
+							<span class="glyphicon glyphicon-user icone-menu"></span>Pacientes</a></li>
+						<li sec:authorize-url="/relatorios/pagamentos"><a th:href="@{/relatorios/pagamentos}">
+							<span class="glyphicon glyphicon-credit-card icone-menu"></span>Pagamentos</a></li>
+					</ul>
+				</li>
+				<li>
+					<a th:href="@{/logout}"> 
+						<span class="glyphicon glyphicon-log-out icone-menu" aria-hidden="true"></span>Sair
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</nav>
+</html>

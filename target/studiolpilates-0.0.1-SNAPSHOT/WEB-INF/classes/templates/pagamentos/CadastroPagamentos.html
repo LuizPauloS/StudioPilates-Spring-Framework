@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/Layout">
+<head>
+<title>StudioL Pilates | Cadastro de Pagamentos</title>
+</head>
+<section layout:fragment="content">
+	<div class="container">
+		<form class="formulario-dados" method="POST" th:action="@{/pagamentos}"
+			th:object="${pagamento}">
+			<input type="hidden" th:field="*{id}" />
+			<div layout:include="layout/Message"></div>
+			<div class="panel-heading">
+				<div class="clearfix">
+					<h1 class="panel-title aw-title-panel">Registrar Novo Pagamento</h1>
+				</div>
+			</div>
+			<div class="panel-body">
+				<div th:classappend="${#fields.hasErrors('nomeConvenio')} ? has-error">
+					<div class="campos col-xs-12 col-sm-12">
+						<label for="nomeConvenio" class="control-label">Convênio</label> <input
+							type="text" class="form-control" id="nomeConvenio"
+							th:field="*{nomeConvenio}" title="Convênio"
+							placeholder="Informe convênio"/>
+					</div>
+				</div>
+				<div th:classappend="${#fields.hasErrors('paciente')} ? has-error">
+					<div class="campos col-xs-12 col-sm-12">
+						<label for="paciente" class="control-label" title="Paciente">Paciente</label> 
+						<select class="form-control" th:field="*{paciente}">
+							<option value="">Selecione paciente</option>
+							<option th:each="paciente : ${listaTodosPacientes}"
+								th:value="${paciente.id}" th:text="${paciente.getNome()}"></option>
+						</select>
+					</div>
+				</div>
+				<div th:classappend="${#fields.hasErrors('procedimento')} ? has-error">
+					<div class="campos col-xs-12 col-sm-4 col-lg-4">
+						<label for="procedimento" class="control-label">Procedimento</label> <input
+							type="text" class="form-control" id="procedimento" th:field="*{procedimento}"
+							title="Procedimento" placeholder="Informe procedimento"/>
+					</div>
+				</div>
+				<div th:classappend="${#fields.hasErrors('descricaoProcedimento')} ? has-error">
+					<div class="campos col-xs-12 col-sm-4 col-lg-4">
+						<label for="descricaoProcedimento" class="control-label">Descrição</label> <input
+							type="text" class="form-control" id="descricaoProcedimento" 
+							th:field="*{descricaoProcedimento}" placeholder="Informe descrição"/>
+					</div>
+				</div>
+				<div th:classappend="${#fields.hasErrors('statusRepasse')} ? has-error">
+					<div class="campos col-xs-12 col-sm-4 col-lg-4">
+						<label for="statusRepasse" class="control-label">Status</label>
+						<select class="form-control" th:field="*{statusRepasse}">
+							<option value="">Selecione Status</option>
+							<option th:each="statusRepasse : ${listaTodosStatusRepasse}" th:value="${statusRepasse}" 
+								th:text="${statusRepasse.descricaoStatusRepasse}">
+							</option>
+						</select>
+					</div>
+				</div>
+				<div th:classappend="${#fields.hasErrors('dataRecebimento')} ? has-error">
+					<div class="campos col-xs-12 col-sm-3 col-lg-3">
+						<label for="dataRecebimento" class="control-label">Data Recebimento</label>
+						<input type="text" class="form-control js-date" id="dataRecebimento" th:field="*{dataRecebimento}" 
+							data-provide="datepicker" data-date-format="dd/mm/yyyy" data-date-language="pt-BR" 
+							data-date-autoclose="true" data-date-today-highlight="true" 
+							data-date-orientation="bottom" placeholder="Informe data do pagamento"/>
+					</div>
+				</div>
+				<div th:classappend="${#fields.hasErrors('valorRecebido')} ? has-error">
+					<div class="campos col-xs-12 col-sm-3 col-lg-3">
+						<label for="valorRecebido" class="control-label">Valor</label> 
+						<input type="text" class="form-control js-currency" id="valorRecebido" 
+							th:field="*{valorRecebido}" title="Valor Recebido" />
+					</div>
+				</div>
+				<div th:classappend="${#fields.hasErrors('formaPagamento')} ? has-error">
+					<div class="campos col-xs-12 col-sm-3 col-lg-3">
+						<label for="formaPagamento" class="control-label">Forma</label> 
+						<select class="form-control" th:field="*{formaPagamento}">
+							<option value="">Selecione Forma de Pgto</option>
+							<option th:each="formaPagamento : ${listaFormasPagamento}" 
+								th:value="${formaPagamento}"
+								th:text="${formaPagamento.descricao}"></option>
+						</select>
+					</div>
+				</div>
+				<div th:classappend="${#fields.hasErrors('percentual')} ? has-error">
+					<div class="campos col-xs-12 col-sm-3 col-lg-3">
+						<label for="percentual" class="control-label">Percentual</label> <input
+							type="number" min="0" max="100" class="form-control" 
+							id="percentual" th:field="*{percentual}" placeholder="Informe percentual repasse"/>
+					</div>
+				</div>
+				<div>
+					<div class="campos col-xs-12 col-sm-12 col-lg-12">
+						<label for="observacao" class="control-label">Observação</label>
+						<textarea id="observacao" class="form-control" rows="4" th:field="*{observacao}"></textarea>
+					</div>
+				</div>
+				<div>
+					<div class="col-sm-12">
+						<button type="submit" class="btn btn-primary col-xs-12 col-sm-1 botao">Salvar</button>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</section>
+</html>

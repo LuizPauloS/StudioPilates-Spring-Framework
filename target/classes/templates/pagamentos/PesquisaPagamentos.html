@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/Layout">
+<head>
+<title>StudioL Pilates | Pesquisa de Pagamentos</title>
+</head>
+<section layout:fragment="content">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<div class="clearfix">
+				<h1 class="panel-title aw-title-panel">Lista de Pagamentos</h1>
+			</div>
+		</div>
+		<div class="panel-body">
+			<form method="GET" class="form-horizontal" th:action="@{/pagamentos}" th:object="${pagamentoFilter}">
+				<div class="form-group">
+					<div class="col-sm-5 col-xs-12">
+						<div class="input-group">
+							<input class="form-control"
+								placeholder="Digite o procedimento relacionado ao pagamento que deseja consultar!"
+								autofocus="autofocus" th:field="*{procedimento}"></input> 
+								<span class="input-group-btn">
+								<button type="submit" class="btn btn-primary">
+									<i class="glyphicon glyphicon-search"></i>
+								</button>
+							</span>
+						</div>
+					</div>
+				</div>
+			</form>
+			<div class="table-responsive">
+				<table class="table table-bordered table-striped paginated">
+					<thead>
+						<tr>
+							<th class="col-md-1">Convênio</th>
+							<th class="col-md-2 hidden-xs">Paciente</th>
+							<th class="text-center col-md-1 hidden-xs">Procedimento</th>
+							<th class="text-center col-md-1">Recebido</th>
+							<th class="text-center col-md-1 hidden-xs">Lucro</th>
+							<th class="text-center col-md-1 hidden-xs">Repasse</th>
+							<th class="text-center col-md-1 hidden-xs">Percentual</th>
+							<th class="text-center col-md-1 hidden-xs">Status</th>
+							<th class="text-center col-md-1 hidden-xs" sec:authorize-url="/pagamentos/pagamento/**"></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="pagamento : ${pagamentos}">
+							<td th:text="${pagamento.nomeConvenio}" class="link-row" style="cursor: pointer;"
+								th:href="@{/pagamentos/pagamento/{id}(id=${pagamento.id})}"></td>
+							<td class="hidden-xs" th:text="${pagamento.paciente.nome}"></td>
+							<td class="text-center hidden-xs" th:text="${pagamento.procedimento}"></td>
+							<td class="text-center" th:text="|R$ ${{pagamento.valorRecebido}}|"></td>
+							<td class="text-center hidden-xs" th:text="|R$ ${{pagamento.valorLucro}}|"></td>
+							<td class="text-center hidden-xs" th:text="|R$ ${{pagamento.valorRepasse}}|"></td>
+							<td class="text-center hidden-xs" th:text="|${pagamento.percentual} %|"></td>
+							<td class="text-center hidden-xs" th:attr="data-role=${pagamento.id}">
+								<span class="label" th:text="${pagamento.statusRepasse}" 
+									 th:classappend="${pagamento.efetuado ? 'label-info': 'label-warning'}"></span>
+							</td>
+							<td class="text-center hidden-xs" sec:authorize-url="/pagamentos/pagamento/**">
+								<a class="btn btn-link btn-xs" sec:authorize-url="/pagamentos/pagamento/**"
+									th:href="@{/pagamentos/pagamento/{id}(id=${pagamento.id})}" 
+									title="Editar" rel="tooltip" data-placement="top"> 
+									<span class="glyphicon glyphicon-pencil"></span>
+								</a> 
+								<a class="btn btn-link btn-xs" data-toggle="modal" 
+									sec:authorize-url="/pagamentos/pagamento/**"
+									data-target="#confirmaExclusaoPagamento" title="Excluir" rel="tooltip" 
+									data-placement="top" th:attr="data-id=${pagamento.id}, data-nome=${pagamento.paciente.nome}, 
+									data-procedimento=${pagamento.procedimento}"> 
+									<span class="glyphicon glyphicon-remove"></span>
+								</a> 
+								<a class="btn btn-link btn-xs js-efetua-pagamento" 
+									sec:authorize-url="/pagamentos/pagamento/**"
+									th:attr="data-id=${pagamento.id}" th:if="${pagamento.pendente}" 
+									th:href="@{/pagamentos/pagamento/{id}/pagar(id=${pagamento.id})}" 
+									title="Efetuar Pagamento" rel="tooltip" 
+									data-placement="top"> 
+									<span class="glyphicon glyphicon-check"></span>
+								</a>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="9" th:if="${#lists.isEmpty(pagamentos)}">Nenhum pagamento cadastrado!</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div layout:include="layout/ModalConfirmacaoExclusaoPagamentos"></div>
+	</div>
+</section>
+</html>
