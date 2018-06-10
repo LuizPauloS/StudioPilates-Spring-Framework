@@ -8,11 +8,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class SegurancaController {
 
-	@RequestMapping("/login")
-	public String login(@AuthenticationPrincipal User user) {
-		if (user != null) {
-			return "redirect:/home";
-		}
-		return "Login";
-	}
+    @RequestMapping("/login")
+    public String login(@AuthenticationPrincipal User user) {
+        if (user != null) {
+            return "redirect:/home";
+        }
+        return "Login";
+    }
 }

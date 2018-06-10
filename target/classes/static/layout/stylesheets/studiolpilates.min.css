@@ -107,8 +107,7 @@
 	vertical-align: middle
 }
 
-@
--moz-keyframes aw-balls-spinner { 0%{
+@-moz-keyframes aw-balls-spinner { 0%{
 	-moz-transform: rotate(-720deg);
 	transform: rotate(-720deg)
 }
@@ -120,8 +119,7 @@
 :rotate(720deg)
 }
 }
-@
--webkit-keyframes aw-balls-spinner { 0%{
+@-webkit-keyframes aw-balls-spinner { 0%{
 	-webkit-transform: rotate(-720deg);
 	transform: rotate(-720deg)
 }
@@ -133,8 +131,7 @@
 :rotate(720deg)
 }
 }
-@
-keyframes aw-balls-spinner { 0%{
+@keyframes aw-balls-spinner { 0%{
 	-moz-transform: rotate(-720deg);
 	-ms-transform: rotate(-720deg);
 	-webkit-transform: rotate(-720deg);
@@ -152,7 +149,7 @@ keyframes aw-balls-spinner { 0%{
 :rotate(720deg)
 }
 }
-.aw-balls-spinner:not (:required ){
+.aw-balls-spinner:not (:required){
 	position: relative;
 	display: inline-block;
 	width: 65px;
@@ -170,8 +167,7 @@ keyframes aw-balls-spinner { 0%{
 	transform-origin: 50% 100%
 }
 
-.aw-balls-spinner:not (:required )::after, .aw-balls-spinner:not (:required
-	)::before {
+.aw-balls-spinner:not (:required)::after, .aw-balls-spinner:not (:required)::before {
 	position: absolute;
 	top: 48.75px;
 	opacity: .8;
@@ -181,12 +177,12 @@ keyframes aw-balls-spinner { 0%{
 	content: ''
 }
 
-.aw-balls-spinner:not (:required )::before {
+.aw-balls-spinner:not (:required)::before {
 	left: -28.15px;
 	background: #99d2f0
 }
 
-.aw-balls-spinner:not (:required )::after {
+.aw-balls-spinner:not (:required)::after {
 	left: 28.15px;
 	background: #1875a5
 }

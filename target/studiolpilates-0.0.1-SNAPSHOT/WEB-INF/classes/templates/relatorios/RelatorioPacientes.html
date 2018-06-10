@@ -1,12 +1,49 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorator="layout/Layout">
-<head>
-<title>Relatório de Pacientes | StudioL Pilates</title>
-</head>
-<section layout:fragment="content">
-<h2 style="text-align: center; margin-bottom: 150px; margin-top: 40px;">Página em desenvolvimento!</h2>
-</section>
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/Layout">
+    <head>
+        <title>Relatórios Pacientes</title>
+    </head>
+    <section layout:fragment="content">
+        <div class="container">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="clearfix">
+                        <h1 class="panel-title aw-title-panel">Relatório de Pacientes</h1>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <form action="#" th:action="@{/relatorios/pacientes-cadastrados}" th:object="${relatorioPacienteFilter}" 
+                          method="post" class="form-horizontal">
+                        <div layout:include="layout/Message"></div>
+                        <div class="campos col-xs-12 col-sm-6 col-lg-6">
+                            <label for="inicial" class="control-label">Data Inicial</label> 
+                            <input type="text" class="form-control" data-date-end-date="0d"
+                                   id="inicial" placeholder="Informe a data inicial" 
+                                   data-provide="datepicker" data-date-format="dd/mm/yyyy"
+                                   data-date-language="pt-BR" data-date-autoclose="true"
+                                   data-date-orientation="bottom" th:field="*{dataInicial}"/>
+                        </div>
+                        <div class="campos col-xs-12 col-sm-6 col-lg-6">
+                            <label for="final" class="control-label">Data Final</label> 
+                            <input type="text" class="form-control" id="final" data-date-end-date="0d"
+                                   data-provide="datepicker" data-date-format="dd/mm/yyyy"
+                                   data-date-language="pt-BR" data-date-autoclose="true"
+                                   data-date-today-highlight="true" data-date-orientation="bottom"
+                                   placeholder="Informe a data final" th:field="*{dataFinal}"/>
+                        </div>
+                        <div class="col-sm-12">
+                            <button type="submit" class="btn btn-primary col-col-xs-12 col-sm-2 col-lg-2 botao">
+                                Pesquisar
+                                <i class="glyphicon glyphicon-search"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
 </html>

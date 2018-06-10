@@ -1,139 +1,139 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorator="layout/Layout">
-<head>
-<title>Studio L Pilates | Cadastro de Pacientes</title>
-</head>
-<section layout:fragment="content">
-	<!--init form add users-->
-	<div class="container">
-		<form class="formulario-dados" method="POST" th:action="@{/pacientes}"
-			th:object="${paciente}">
-			<input type="hidden" th:field="*{id}" />
-			<!--init include message success/error fields-->
-			<div layout:include="layout/Message"></div>
-			<div class="panel-heading">
-				<div class="clearfix">
-					<h1 class="panel-title aw-title-panel">Registrar Novo Paciente</h1>
-				</div>
-			</div>
-			<div class="panel-body">
-				<div th:classappend="${#fields.hasErrors('nome')} ? has-error">
-					<div class="campos col-xs-12 col-sm-12 col-lg-12">
-						<label for="nome" class="control-label">Nome</label> <input
-							type="text" class="form-control" id="nome" th:field="*{nome}"
-							title="Nome" placeholder="Informe o nome"/>
-					</div>
-				</div>
-				<div th:classappend="${#fields.hasErrors('email')} ? has-error">
-					<div class="campos col-xs-12 col-sm-12 col-lg-12">
-						<label for="email" class="control-label">E-mail</label> <input
-							type="email" class="form-control" id="email" th:field="*{email}"
-							title="E-mail" placeholder="Informe o e-mail"/>
-					</div>
-				</div>
-				<div th:classappend="${#fields.hasErrors('dataNascimento')} ? has-error">
-					<div class="campos col-xs-12 col-sm-3 col-lg-3">
-						<label for="dataNascimento" class="control-label">Data de
-							Nascimento</label> <input type="text" class="form-control js-date"
-							id="dataNascimento" th:field="*{dataNascimento}"
-							data-provide="datepicker" data-date-format="dd/mm/yyyy"
-							data-date-language="pt-BR" data-date-autoclose="true"
-							data-date-today-highlight="true" data-date-orientation="bottom" 
-							placeholder="Informe a data de nascimento"/>
-					</div>
-				</div>
-				<div th:classappend="${#fields.hasErrors('telefoneContato')} ? has-error">
-					<div class="campos col-xs-12 col-sm-3 col-lg-3">
-						<label for="telefoneContato" class="control-label">Telefone</label>
-						<input type="tel" class="form-control js-phone"
-							id="telefoneContato" th:field="*{telefoneContato}" 
-							placeholder="Informe o telefone p/ contato"/>
-					</div>
-				</div>
-				<div th:classappend="${#fields.hasErrors('sexo')} ? has-error">
-					<div class="campos col-xs-12 col-sm-3 col-lg-3">
-						<label for="sexo" class="control-label">Sexo</label> <select
-							class="form-control" th:field="*{sexo}">
-							<option value="">Selecione sexo</option>
-							<option th:each="sexo : ${listaTodosSexos}" th:value="${sexo}"
-								th:text="${sexo}"></option>
-						</select>
-					</div>
-				</div>
-				<div th:classappend="${#fields.hasErrors('status')} ? has-error">
-					<div class="campos col-xs-12 col-sm-3 col-lg-3">
-						<label for="status" class="control-label">Status</label>
-						<select class="form-control" th:field="*{status}">
-							<option value="">Selecione status</option>
-							<option th:each="status : ${listaTodosStatus}"
-								th:value="${status}" th:text="${status}"></option>
-						</select>
-					</div>
-				</div>
-				<div th:classappend="${#fields.hasErrors('endereco.cep')} ? has-error">
-					<div class="campos col-xs-12 col-sm-3 col-lg-3">
-						<label for="cep" class="control-label">CEP</label> <input
-							type="text" class="form-control js-cep" id="cep"
-							th:field="*{endereco.cep}" placeholder="Buscar endereço por CEP"/>
-					</div>
-				</div>
-				<div th:classappend="${#fields.hasErrors('endereco.rua')} ? has-error">
-					<div class="campos col-xs-12 col-sm-5 col-lg-5">
-						<label for="rua" class="control-label">Endereço</label> <input
-							type="text" class="form-control" id="rua"
-							th:field="*{endereco.rua}" placeholder="Informe o endereço"/>
-					</div>
-				</div>
-				<div th:classappend="${#fields.hasErrors('endereco.bairro')} ? has-error">
-					<div class="campos col-xs-12 col-sm-4 col-lg-4">
-						<label for="bairro" class="control-label">Bairro</label> <input
-							type="text" class="form-control" id="bairro"
-							th:field="*{endereco.bairro}" placeholder="Informe o bairro"/>
-					</div>
-				</div>
-				<div th:classappend="${#fields.hasErrors('endereco.numero')} ? has-error">
-					<div class="campos col-xs-12 col-sm-3 col-lg-3">
-						<label for="numero" class="control-label">Número</label> <input
-							type="number" min="0" class="form-control" id="numero"
-							th:field="*{endereco.numero}" placeholder="Informe o número"/>
-					</div>
-				</div>
-				
-				<div th:classappend="${#fields.hasErrors('endereco.cidade')} ? has-error">
-					<div class="campos col-xs-12 col-sm-5 col-lg-5">
-						<label for="cidade" class="control-label">Cidade</label> <input
-							type="text" class="form-control" id="cidade"
-							th:field="*{endereco.cidade}" placeholder="Informe a cidade"/>
-					</div>
-				</div>
-				<div th:classappend="${#fields.hasErrors('endereco.estado')} ? has-error">
-					<div class="campos col-xs-12 col-sm-4 col-lg-4">
-						<label for="estado" class="control-label">Estado</label> <input
-							type="text" class="form-control" id="estado"
-							th:field="*{endereco.estado}" placeholder="Informe o estado"/>
-					</div>
-				</div>
-				<!--<div th:classappend="${#fields.hasErrors('enviarEmailConfirmacao')} ? has-error">
-					<div class="campos col-xs-12 col-sm-3 col-lg-3">
-						<label for="enviarEmailConfirmacao" class="control-label">Enviar e-mail de confirmação?</label>
-						<div class="form-control">
-							<label class="radio-inline"><input type="radio" name="enviarEmailConfirmacao" value="true" th:field="*{enviarEmailConfirmacao}"/>Sim</label> 
-							<label class="radio-inline"><input type="radio" name="enviarEmailConfirmacao" value="false" th:field="*{enviarEmailConfirmacao}"/>Não</label>
-						</div>
-					</div>
-				</div>-->
-				<div>
-					<div class="col-sm-12">
-						<button type="submit" class="btn btn-primary col-xs-12 col-sm-1 botao">Salvar</button>
-					</div>
-				</div>
-			</div>
-		</form>
-		<!--finish form add users-->
-	</div>
-</section>
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/Layout">
+    <head>
+        <title>Studio L Pilates | Cadastro de Pacientes</title>
+    </head>
+    <section layout:fragment="content">
+        <!--init form add users-->
+        <div class="container">
+            <form class="formulario-dados" method="POST" th:action="@{/pacientes}"
+                  th:object="${paciente}">
+                <input type="hidden" th:field="*{id}" />
+                <!--init include message success/error fields-->
+                <div layout:include="layout/Message"></div>
+                <div class="panel-heading">
+                    <div class="clearfix">
+                        <h1 class="panel-title aw-title-panel">Registrar Novo Paciente</h1>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div th:classappend="${#fields.hasErrors('nome')} ? has-error">
+                        <div class="campos col-xs-12 col-sm-12 col-lg-12">
+                            <label for="nome" class="control-label">Nome</label> <input
+                                type="text" class="form-control" id="nome" th:field="*{nome}"
+                                title="Nome" placeholder="Informe o nome"/>
+                        </div>
+                    </div>
+                    <div th:classappend="${#fields.hasErrors('email')} ? has-error">
+                        <div class="campos col-xs-12 col-sm-12 col-lg-12">
+                            <label for="email" class="control-label">E-mail</label> <input
+                                type="email" class="form-control" id="email" th:field="*{email}"
+                                title="E-mail" placeholder="Informe o e-mail"/>
+                        </div>
+                    </div>
+                    <div th:classappend="${#fields.hasErrors('dataNascimento')} ? has-error">
+                        <div class="campos col-xs-12 col-sm-3 col-lg-3">
+                            <label for="dataNascimento" class="control-label">Data de
+                                Nascimento</label> <input type="text" class="form-control js-date"
+                                                      id="dataNascimento" th:field="*{dataNascimento}"
+                                                      data-provide="datepicker" data-date-format="dd/mm/yyyy"
+                                                      data-date-language="pt-BR" data-date-autoclose="true"
+                                                      data-date-today-highlight="true" data-date-orientation="bottom" 
+                                                      placeholder="Informe a data de nascimento"/>
+                        </div>
+                    </div>
+                    <div th:classappend="${#fields.hasErrors('contato')} ? has-error">
+                        <div class="campos col-xs-12 col-sm-3 col-lg-3">
+                            <label for="contato" class="control-label">Telefone</label>
+                            <input type="tel" class="form-control js-phone"
+                                   id="contato" th:field="*{contato}" 
+                                   placeholder="Informe o telefone p/ contato"/>
+                        </div>
+                    </div>
+                    <div th:classappend="${#fields.hasErrors('sexo')} ? has-error">
+                        <div class="campos col-xs-12 col-sm-3 col-lg-3">
+                            <label for="sexo" class="control-label">Sexo</label> <select
+                                class="form-control" th:field="*{sexo}">
+                                <option value="">Selecione sexo</option>
+                                <option th:each="sexo : ${listaTodosSexos}" th:value="${sexo}"
+                                        th:text="${sexo}"></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div th:classappend="${#fields.hasErrors('status')} ? has-error">
+                        <div class="campos col-xs-12 col-sm-3 col-lg-3">
+                            <label for="status" class="control-label">Status</label>
+                            <select class="form-control" th:field="*{status}">
+                                <option value="">Selecione status</option>
+                                <option th:each="status : ${listaTodosStatus}"
+                                        th:value="${status}" th:text="${status}"></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div th:classappend="${#fields.hasErrors('endereco.cep')} ? has-error">
+                        <div class="campos col-xs-12 col-sm-3 col-lg-3">
+                            <label for="cep" class="control-label">CEP</label> <input
+                                type="text" class="form-control js-cep" id="cep"
+                                th:field="*{endereco.cep}" placeholder="Buscar endereço por CEP"/>
+                        </div>
+                    </div>
+                    <div th:classappend="${#fields.hasErrors('endereco.rua')} ? has-error">
+                        <div class="campos col-xs-12 col-sm-5 col-lg-5">
+                            <label for="rua" class="control-label">Endereço</label> <input
+                                type="text" class="form-control" id="rua"
+                                th:field="*{endereco.rua}" placeholder="Informe o endereço"/>
+                        </div>
+                    </div>
+                    <div th:classappend="${#fields.hasErrors('endereco.bairro')} ? has-error">
+                        <div class="campos col-xs-12 col-sm-4 col-lg-4">
+                            <label for="bairro" class="control-label">Bairro</label> <input
+                                type="text" class="form-control" id="bairro"
+                                th:field="*{endereco.bairro}" placeholder="Informe o bairro"/>
+                        </div>
+                    </div>
+                    <div th:classappend="${#fields.hasErrors('endereco.numero')} ? has-error">
+                        <div class="campos col-xs-12 col-sm-3 col-lg-3">
+                            <label for="numero" class="control-label">Número</label> <input
+                                type="number" min="0" class="form-control" id="numero"
+                                th:field="*{endereco.numero}" placeholder="Informe o número"/>
+                        </div>
+                    </div>
+
+                    <div th:classappend="${#fields.hasErrors('endereco.cidade')} ? has-error">
+                        <div class="campos col-xs-12 col-sm-5 col-lg-5">
+                            <label for="cidade" class="control-label">Cidade</label> <input
+                                type="text" class="form-control" id="cidade"
+                                th:field="*{endereco.cidade}" placeholder="Informe a cidade"/>
+                        </div>
+                    </div>
+                    <div th:classappend="${#fields.hasErrors('endereco.estado')} ? has-error">
+                        <div class="campos col-xs-12 col-sm-4 col-lg-4">
+                            <label for="estado" class="control-label">Estado</label> <input
+                                type="text" class="form-control" id="estado"
+                                th:field="*{endereco.estado}" placeholder="Informe o estado"/>
+                        </div>
+                    </div>
+                    <!--<div th:classappend="${#fields.hasErrors('enviarEmailConfirmacao')} ? has-error">
+                            <div class="campos col-xs-12 col-sm-3 col-lg-3">
+                                    <label for="enviarEmailConfirmacao" class="control-label">Enviar e-mail de confirmação?</label>
+                                    <div class="form-control">
+                                            <label class="radio-inline"><input type="radio" name="enviarEmailConfirmacao" value="true" th:field="*{enviarEmailConfirmacao}"/>Sim</label> 
+                                            <label class="radio-inline"><input type="radio" name="enviarEmailConfirmacao" value="false" th:field="*{enviarEmailConfirmacao}"/>Não</label>
+                                    </div>
+                            </div>
+                    </div>-->
+                    <div>
+                        <div class="col-sm-12">
+                            <button type="submit" class="btn btn-primary col-xs-12 col-sm-1 col-lg-1 botao">Salvar</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <!--finish form add users-->
+        </div>
+    </section>
 </html>

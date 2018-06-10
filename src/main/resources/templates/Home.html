@@ -1,83 +1,83 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorator="layout/Layout">
-<head>
-<title>Studio L Pilates | Pesquisa de Pacientes</title>
-</head>
-<section layout:fragment="content">
-	<div class="jumbotron">
-		<div class="container">
-			<h2 class="display-2"> Bem vindo!</h2>
-			<p class="text-align" style="font-size: 20px">Este sistema foi desenvolvido para gerenciamento, cadastros de
-				pacientes e pagamentos, emissão de relatórios e controle
-				financeiro.</p>
-		</div>
-	</div>
-	<div class="container">
-		<!-- Example row of columns -->
-		<div class="row">
-			<div class="col-md-4">
-				<h2>Cadastros</h2>
-				<p class="text-align">Donec id elit non mi porta gravida at eget metus. Fusce
-					dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh,
-					ut fermentum massa justo sit amet risus. Etiam porta sem malesuada
-					magna mollis euismod. Donec sed odio dui.</p>
-				<p>
-					<h5 sec:authorize-url="/pacientes/novo">Pacientes</h5>
-					<a class="btn btn-primary" th:href="@{/pacientes/novo}" sec:authorize-url="/pacientes/novo"
-						role="button">Ir até cadastro »</a>
-				</p>
-				<p>	
-					<h5 sec:authorize-url="/pagamentos/novo">Pagamentos</h5>
-					<a class="btn btn-primary" th:href="@{/pagamentos/novo}" sec:authorize-url="/pagamentos/novo"
-						role="button">Ir até cadastro »</a>
-				</p>
-				<div class="col-xs-12">
-					<hr/>
-				</div>
-			</div>
-			<div class="col-md-4">
-				<h2>Pesquisas</h2>
-				<p class="text-align">Donec sed odio dui. Cras justo odio, dapibus ac facilisis in,
-					egestas eget quam. Vestibulum id ligula porta felis euismod semper.
-					Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum
-					nibh, ut fermentum massa justo sit amet risus.</p>
-				<p>
-					<h5 sec:authorize-url="/pacientes">Pacientes</h5>
-					<a class="btn btn-primary" th:href="@{/pacientes}" sec:authorize-url="/pacientes"
-							role="button">Ir até pesquisa »</a> 
-				</p>
-				<p>
-					<h5 sec:authorize-url="/pagamentos">Pagamentos</h5>
-					<a class="btn btn-primary" th:href="@{/pagamentos}" sec:authorize-url="/pagamentos" 
-							role="button">Ir até pesquisa »</a>
-				</p>
-			</div>
-			<div class="col-md-4">
-				<h2>Relatórios</h2>
-				<p class="text-align">Donec sed odio dui. Cras justo odio, dapibus ac facilisis in,
-					egestas eget quam. Vestibulum id ligula porta felis euismod semper.
-					Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum
-					nibh, ut fermentum massa justo sit amet risus.</p>
-				<p>
-					<h5 sec:authorize-url="/relatorios/pacientes">Pacientes</h5>
-					<a class="btn btn-primary" th:href="@{/relatorios/pacientes}" sec:authorize-url="/relatorios/pacientes"
-							role="button">Ir até relatório »</a> 
-				</p>
-				<p>
-					<h5 sec:authorize-url="/relatorios/pagamentos">Pagamentos</h5>
-					<a class="btn btn-primary" th:href="@{/relatorios/pagamentos}" sec:authorize-url="/relatorios/pagamentos"
-							role="button">Ir até relatório »</a>
-				</p>
-			</div>
-		</div>
-		<hr />
-		<footer style="text-align: center;">
-			<p>© Studio Le Pilates 2017 - Todos os direitos reservados!</p>
-		</footer>
-	</div>
-</section>
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/Layout">
+    <head>
+        <title>Studio Le Pilates | Pesquisa de Pacientes</title>
+    </head>
+    <section layout:fragment="content">
+        <div class="jumbotron">
+            <div class="container">
+                <h2 class="display-2"> Bem vindo!</h2>
+                <p class="text-align" style="font-size: 20px">Este sistema foi desenvolvido para gerenciamento, cadastros de
+                    pacientes e pagamentos, emissão de relatórios e controle
+                    financeiro.</p>
+            </div>
+        </div>
+        <div class="container">
+            <!-- Example row of columns -->
+            <div class="row">
+                <div class="col-md-4">
+                    <h2>Cadastros</h2>
+                    <p class="text-align">Donec id elit non mi porta gravida at eget metus. Fusce
+                        dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh,
+                        ut fermentum massa justo sit amet risus. Etiam porta sem malesuada
+                        magna mollis euismod. Donec sed odio dui.</p>
+                    <p>
+                        <h5 sec:authorize-url="/pacientes/novo">Pacientes</h5>
+                        <a class="btn btn-primary" th:href="@{/pacientes/novo}" sec:authorize-url="/pacientes/novo"
+                           role="button">Ir até cadastro »</a>
+                    </p>
+                    <p>	
+                        <h5 sec:authorize-url="/pagamentos/novo">Pagamentos</h5>
+                        <a class="btn btn-primary" th:href="@{/pagamentos/novo}" sec:authorize-url="/pagamentos/novo"
+                           role="button">Ir até cadastro »</a>
+                    </p>
+                    <div class="col-xs-12">
+                        <hr/>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <h2>Pesquisas</h2>
+                    <p class="text-align">Donec sed odio dui. Cras justo odio, dapibus ac facilisis in,
+                        egestas eget quam. Vestibulum id ligula porta felis euismod semper.
+                        Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum
+                        nibh, ut fermentum massa justo sit amet risus.</p>
+                    <p>
+                        <h5 sec:authorize-url="/pacientes">Pacientes</h5>
+                        <a class="btn btn-primary" th:href="@{/pacientes}" sec:authorize-url="/pacientes"
+                           role="button">Ir até pesquisa »</a> 
+                    </p>
+                    <p>
+                        <h5 sec:authorize-url="/pagamentos">Pagamentos</h5>
+                        <a class="btn btn-primary" th:href="@{/pagamentos}" sec:authorize-url="/pagamentos" 
+                           role="button">Ir até pesquisa »</a>
+                    </p>
+                </div>
+                <div class="col-md-4">
+                    <h2>Relatórios</h2>
+                    <p class="text-align">Donec sed odio dui. Cras justo odio, dapibus ac facilisis in,
+                        egestas eget quam. Vestibulum id ligula porta felis euismod semper.
+                        Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum
+                        nibh, ut fermentum massa justo sit amet risus.</p>
+                    <p>
+                        <h5 sec:authorize-url="/relatorios/pacientes">Pacientes</h5>
+                        <a class="btn btn-primary" th:href="@{/relatorios/pacientes}" sec:authorize-url="/relatorios/pacientes"
+                           role="button">Ir até relatório »</a> 
+                    </p>
+                    <p>
+                        <h5 sec:authorize-url="/relatorios/pagamentos">Pagamentos</h5>
+                        <a class="btn btn-primary" th:href="@{/relatorios/pagamentos}" sec:authorize-url="/relatorios/pagamentos"
+                           role="button">Ir até relatório »</a>
+                    </p>
+                </div>
+            </div>
+            <hr />
+            <footer style="text-align: center;">
+                <p>© Studio Le Pilates 2017 - Todos os direitos reservados!</p>
+            </footer>
+        </div>
+    </section>
 </html>

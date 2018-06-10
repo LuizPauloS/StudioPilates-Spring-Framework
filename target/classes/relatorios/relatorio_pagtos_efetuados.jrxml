@@ -2,53 +2,30 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="bb6d2b99-453f-4e45-8bc6-eecfa41495e1">
 	<property name="ireport.zoom" value="2.0"/>
 	<property name="ireport.x" value="68"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="94"/>
 	<parameter name="data_inicio" class="java.util.Date">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<parameter name="data_fim" class="java.util.Date">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
-	<queryString>
-		<![CDATA[SELECT
-     pagamento."forma_pagamento" AS pagamento_forma_pagamento,
-     pagamento."valor_lucro" AS pagamento_valor_lucro,
-     pagamento."valor_recebido" AS pagamento_valor_recebido,
-     pagamento."valor_repasse" AS pagamento_valor_repasse,
-     pagamento."procedimento" AS pagamento_procedimento,
-     paciente."nome" AS paciente_nome,
-     pagamento."nome_convenio" AS pagamento_nome_convenio,
-     pagamento."data_recebimento" AS pagamento_data_recebimento,
-     pagamento."paciente_id" AS pagamento_paciente_id,
-     paciente."id" AS paciente_id,
-     pagamento."status_repasse" AS pagamento_status_repasse
-FROM "public"."paciente" paciente 
-INNER JOIN "public"."pagamento" pagamento 
-ON paciente."id" = pagamento."paciente_id"
-WHERE pagamento."status_repasse" = 'EFETUADO' AND pagamento."data_recebimento" 
-BETWEEN $P{data_inicio} AND $P{data_fim}
-ORDER BY
-     pagamento."data_recebimento" ASC]]>
-	</queryString>
-	<field name="pagamento_forma_pagamento" class="java.lang.String"/>
-	<field name="pagamento_valor_lucro" class="java.math.BigDecimal"/>
-	<field name="pagamento_valor_recebido" class="java.math.BigDecimal"/>
-	<field name="pagamento_valor_repasse" class="java.math.BigDecimal"/>
-	<field name="pagamento_procedimento" class="java.lang.String"/>
-	<field name="paciente_nome" class="java.lang.String"/>
-	<field name="pagamento_nome_convenio" class="java.lang.String"/>
-	<field name="pagamento_data_recebimento" class="java.sql.Timestamp"/>
-	<field name="pagamento_paciente_id" class="java.lang.Long"/>
-	<field name="paciente_id" class="java.lang.Long"/>
-	<field name="pagamento_status_repasse" class="java.lang.String"/>
-	<variable name="pagamento_valor_lucro_1" class="java.math.BigDecimal" resetType="Column" calculation="Sum">
-		<variableExpression><![CDATA[$F{pagamento_valor_lucro}]]></variableExpression>
+	<field name="formaPagamento" class="java.lang.String"/>
+	<field name="valorLucro" class="java.math.BigDecimal"/>
+	<field name="valorRecebido" class="java.math.BigDecimal"/>
+	<field name="valorRepasse" class="java.math.BigDecimal"/>
+	<field name="procedimento" class="java.lang.String"/>
+	<field name="nomeConvenio" class="java.lang.String"/>
+	<field name="dataRecebimento" class="java.sql.Timestamp"/>
+	<field name="nomePaciente" class="java.lang.String"/>
+	<field name="statusRepasse" class="java.lang.String"/>
+	<variable name="valorLucro_1" class="java.math.BigDecimal" resetType="Column" calculation="Sum">
+		<variableExpression><![CDATA[$F{valorLucro}]]></variableExpression>
 	</variable>
-	<variable name="pagamento_valor_recebido_1" class="java.math.BigDecimal" resetType="Column" calculation="Sum">
-		<variableExpression><![CDATA[$F{pagamento_valor_recebido}]]></variableExpression>
+	<variable name="valorRecebido_1" class="java.math.BigDecimal" resetType="Column" calculation="Sum">
+		<variableExpression><![CDATA[$F{valorRecebido}]]></variableExpression>
 	</variable>
-	<variable name="pagamento_valor_repasse_1" class="java.math.BigDecimal" resetType="Column" calculation="Sum">
-		<variableExpression><![CDATA[$F{pagamento_valor_repasse}]]></variableExpression>
+	<variable name="valorRepasse_1" class="java.math.BigDecimal" resetType="Column" calculation="Sum">
+		<variableExpression><![CDATA[$F{valorRepasse}]]></variableExpression>
 	</variable>
 	<background>
 		<band splitType="Stretch"/>
@@ -56,7 +33,7 @@ ORDER BY
 	<title>
 		<band height="92" splitType="Stretch">
 			<staticText>
-				<reportElement x="92" y="11" width="371" height="39" uuid="3d9d4248-665b-45ff-86df-d61d10d92714"/>
+				<reportElement x="81" y="11" width="398" height="39" uuid="3d9d4248-665b-45ff-86df-d61d10d92714"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="SansSerif" size="21" isBold="false"/>
 				</textElement>
@@ -110,8 +87,8 @@ ORDER BY
 			</staticText>
 			<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy - HH:mm:ss" isBlankWhenNull="true">
 				<reportElement x="49" y="0" width="116" height="22" uuid="9c729af9-1911-4a6f-9ac8-77266b0d1dde"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font fontName="SansSerif"/>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="SansSerif" isUnderline="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
@@ -185,19 +162,12 @@ ORDER BY
 			<line>
 				<reportElement x="2" y="0" width="553" height="1" forecolor="#666666" uuid="3a6b873a-598e-4d1f-b86f-e8a81ad57586"/>
 			</line>
-			<textField>
-				<reportElement x="51" y="0" width="95" height="21" uuid="774dcf67-3109-4e8f-b2af-28f8afe13a06"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font fontName="SansSerif"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{paciente_nome}.toUpperCase()]]></textFieldExpression>
-			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="146" y="0" width="70" height="21" uuid="6bcbc8de-0554-4a04-aee7-357eeabe7bd2"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="SansSerif"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{pagamento_nome_convenio}.toUpperCase()]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{nomeConvenio}.toUpperCase()]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Auto" pattern="dd/MM/yy">
 				<reportElement x="2" y="0" width="49" height="21" uuid="87018669-0155-4eb0-a46d-64118818e363"/>
@@ -205,42 +175,49 @@ ORDER BY
 					<font fontName="SansSerif"/>
 					<paragraph lineSpacing="Proportional"/>
 				</textElement>
-				<textFieldExpression><![CDATA[(new SimpleDateFormat("dd/MM/yy")).format($F{pagamento_data_recebimento})]]></textFieldExpression>
+				<textFieldExpression><![CDATA[(new SimpleDateFormat("dd/MM/yy")).format($F{dataRecebimento})]]></textFieldExpression>
 			</textField>
 			<textField pattern="¤ #,##0.00" isBlankWhenNull="true">
 				<reportElement x="489" y="0" width="66" height="21" uuid="6e2cc352-9299-4eed-a899-6be5b10f85c9"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="SansSerif"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{pagamento_valor_lucro}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{valorLucro}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="216" y="0" width="87" height="21" uuid="182c9a0c-30c9-41c7-8196-04083a0e09df"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="SansSerif"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{pagamento_procedimento}.toUpperCase()]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{procedimento}.toUpperCase()]]></textFieldExpression>
 			</textField>
 			<textField pattern="¤ #,##0.00" isBlankWhenNull="true">
 				<reportElement x="367" y="0" width="64" height="21" uuid="49fdf195-66d3-4c75-8722-6cf642e21d9c"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="SansSerif"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{pagamento_valor_recebido}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{valorRecebido}]]></textFieldExpression>
 			</textField>
 			<textField pattern="¤ #,##0.00" isBlankWhenNull="true">
 				<reportElement x="431" y="0" width="58" height="21" uuid="0a4fcfad-2718-4d69-abef-a785194033f5"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="SansSerif"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{pagamento_valor_repasse}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{valorRepasse}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="303" y="0" width="56" height="21" uuid="50bda5d9-4a7c-49ea-9bff-a118b74ede39"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="SansSerif"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{pagamento_forma_pagamento}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{formaPagamento}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="49" y="0" width="95" height="21" uuid="94d4a7ea-5a0a-44f9-a536-cc8fb9cf0775"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nomePaciente}.toUpperCase()]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
@@ -258,7 +235,7 @@ ORDER BY
 				<textElement verticalAlignment="Middle">
 					<font fontName="SansSerif" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$V{pagamento_valor_lucro_1}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$V{valorLucro_1}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="206" y="65" width="87" height="19" uuid="c0dd52d5-d7f4-4400-9f0d-4f3cdad08490"/>
@@ -286,14 +263,14 @@ ORDER BY
 				<textElement verticalAlignment="Middle">
 					<font fontName="SansSerif" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$V{pagamento_valor_recebido_1}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$V{valorRecebido_1}]]></textFieldExpression>
 			</textField>
 			<textField pattern="¤ #,##0.00" isBlankWhenNull="true">
 				<reportElement x="283" y="65" width="120" height="19" uuid="db9f6947-0f1d-4e63-ab70-ba8a1c83e7e9"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="SansSerif" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$V{pagamento_valor_repasse_1}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$V{valorRepasse_1}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="403" y="65" width="65" height="19" uuid="e189beb6-fd13-489e-84d8-7080fd9e8471"/>

@@ -1,257 +1,243 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relatorio_pacientes" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" whenResourceMissingType="Empty" uuid="6e00b61b-f47b-4ff3-b06f-ac9677786034">
-	<property name="ireport.zoom" value="2.0"/>
-	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
-	<property name="ireport.callouts" value="##Mon Mar 20 20:00:08 BRT 2017"/>
-	<style name="style1"/>
-	<parameter name="data_inicio" class="java.util.Date">
-		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
-	</parameter>
-	<parameter name="data_fim" class="java.util.Date">
-		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
-	</parameter>
-	<queryString>
-		<![CDATA[SELECT
-     paciente."id" AS paciente_id,
-     paciente."data_nascimento" AS paciente_data_nascimento,
-     paciente."nome" AS paciente_nome,
-     paciente."contato" AS paciente_contato,
-     paciente."email" AS paciente_email,
-     paciente."status_paciente" AS paciente_status_paciente,
-     paciente."data_cadastro" AS paciente_data_cadastro
-FROM
-     "public"."paciente" paciente
-WHERE
-     paciente."data_cadastro" BETWEEN $P{data_inicio} AND $P{data_fim}
-ORDER BY
-     paciente."nome" ASC]]>
-	</queryString>
-	<field name="paciente_id" class="java.lang.Long"/>
-	<field name="paciente_data_nascimento" class="java.sql.Timestamp"/>
-	<field name="paciente_nome" class="java.lang.String"/>
-	<field name="paciente_contato" class="java.lang.String"/>
-	<field name="paciente_email" class="java.lang.String"/>
-	<field name="paciente_status_paciente" class="java.lang.String"/>
-	<field name="paciente_data_cadastro" class="java.sql.Timestamp"/>
-	<variable name="paciente_id_1" class="java.lang.Long" calculation="Sum">
-		<variableExpression><![CDATA[$F{paciente_id}]]></variableExpression>
-	</variable>
-	<variable name="paciente_id_2" class="java.lang.Long" resetType="Page" calculation="Sum">
-		<variableExpression><![CDATA[$F{paciente_id}]]></variableExpression>
-	</variable>
-	<variable name="paciente_email_1" class="java.lang.Integer" resetType="Page" calculation="Count">
-		<variableExpression><![CDATA[$F{paciente_email}]]></variableExpression>
-	</variable>
-	<variable name="paciente_nome_1" class="java.lang.Integer" resetType="Page" calculation="Count">
-		<variableExpression><![CDATA[$F{paciente_nome}]]></variableExpression>
-	</variable>
-	<group name="Group1">
-		<groupFooter>
-			<band/>
-		</groupFooter>
-	</group>
-	<group name="Group2">
-		<groupFooter>
-			<band/>
-		</groupFooter>
-	</group>
-	<group name="Group3">
-		<groupFooter>
-			<band/>
-		</groupFooter>
-	</group>
-	<group name="Group4">
-		<groupFooter>
-			<band/>
-		</groupFooter>
-	</group>
-	<background>
-		<band/>
-	</background>
-	<title>
-		<band height="93">
-			<staticText>
-				<reportElement x="134" y="15" width="287" height="39" uuid="deb71b7c-09d7-4d3d-875c-205093d4bff1"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="SansSerif" size="21" isBold="false"/>
-				</textElement>
-				<text><![CDATA[Relatório de Pacientes]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="186" y="54" width="182" height="20" uuid="ab47369c-ff13-441d-bf29-b03eb576f960"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="SansSerif"/>
-				</textElement>
-				<text><![CDATA[Sistema de Cadastro de Pacientes]]></text>
-			</staticText>
-			<textField pattern="EEEEE dd MMMMM yyyy">
-				<reportElement x="204" y="74" width="146" height="13" uuid="1ab69002-7f4e-416f-b4cf-970d0b73ce45"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="SansSerif" isBold="false" isItalic="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
-			</textField>
-		</band>
-	</title>
-	<pageHeader>
-		<band height="25">
-			<staticText>
-				<reportElement x="0" y="0" width="60" height="15" uuid="181f554a-1003-4a29-acf4-f31aa35d6a87"/>
-				<textElement textAlignment="Left" verticalAlignment="Bottom">
-					<font fontName="SansSerif" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Período:]]></text>
-			</staticText>
-			<textField isBlankWhenNull="true">
-				<reportElement x="108" y="0" width="76" height="15" uuid="a702b60f-c696-4150-a3ad-6a0b71e6c2a5"/>
-				<textElement verticalAlignment="Bottom">
-					<font fontName="SansSerif"/>
-				</textElement>
-				<textFieldExpression><![CDATA[(new SimpleDateFormat("dd/MM/yy")).format($P{data_fim})]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement x="93" y="0" width="15" height="15" uuid="4583e603-4f0f-43fc-8aee-ff816d16eb89"/>
-				<textElement verticalAlignment="Bottom">
-					<font fontName="SansSerif"/>
-				</textElement>
-				<text><![CDATA[ a]]></text>
-			</staticText>
-			<textField isBlankWhenNull="true">
-				<reportElement x="50" y="0" width="54" height="15" uuid="0f40929c-8681-4ba3-bca6-feb3af85cc88"/>
-				<textElement textAlignment="Left" verticalAlignment="Bottom">
-					<font fontName="SansSerif"/>
-				</textElement>
-				<textFieldExpression><![CDATA[(new SimpleDateFormat("dd/MM/yy")).format($P{data_inicio})]]></textFieldExpression>
-			</textField>
-		</band>
-	</pageHeader>
-	<columnHeader>
-		<band height="21">
-			<line>
-				<reportElement x="2" y="20" width="553" height="1" forecolor="#666666" uuid="cd951290-a2ea-495f-a5d0-73f5ca6a2c1a"/>
-			</line>
-			<staticText>
-				<reportElement x="78" y="0" width="108" height="20" uuid="455a652e-55ae-4553-95ff-c7fda70cc0f3"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="SansSerif" isItalic="false"/>
-				</textElement>
-				<text><![CDATA[NOME PACIENTE]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="224" y="0" width="91" height="20" uuid="732f1582-6030-4652-8e4f-dd7444c21a38"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="SansSerif"/>
-				</textElement>
-				<text><![CDATA[NASCIMENTO]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="315" y="0" width="84" height="20" uuid="af37c82f-a4c3-45e3-b464-dd2526061263"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="SansSerif"/>
-				</textElement>
-				<text><![CDATA[CONTATO]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="411" y="0" width="122" height="20" uuid="e1e3bb52-b4f7-4b7f-9602-3b13263271ee"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="SansSerif"/>
-				</textElement>
-				<text><![CDATA[E-MAIL]]></text>
-			</staticText>
-			<staticText>
-				<reportElement style="style1" mode="Transparent" x="2" y="0" width="58" height="21" forecolor="#000000" backcolor="#FFFFFF" uuid="392155b3-32b7-4336-be27-02a6db28aa5e"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
-					<font fontName="SansSerif" isBold="false" isStrikeThrough="false" isPdfEmbedded="false"/>
-				</textElement>
-				<text><![CDATA[STATUS]]></text>
-			</staticText>
-			<rectangle>
-				<reportElement mode="Transparent" x="0" y="0" width="555" height="20" uuid="47c12a60-e6c6-4358-912e-1760f66589b7"/>
-			</rectangle>
-		</band>
-	</columnHeader>
-	<detail>
-		<band height="20">
-			<line>
-				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="706f758c-56be-473d-8fd1-fc985761d11d"/>
-			</line>
-			<textField isBlankWhenNull="true">
-				<reportElement x="421" y="0" width="134" height="20" uuid="1c6e72c2-53d2-4787-b7e4-4a707b3921da"/>
-				<textElement verticalAlignment="Middle">
-					<font fontName="SansSerif"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{paciente_email}.toLowerCase()]]></textFieldExpression>
-			</textField>
-			<textField isBlankWhenNull="true">
-				<reportElement isPrintRepeatedValues="false" mode="Transparent" x="78" y="0" width="146" height="20" uuid="eb417de6-3216-48ad-885b-360ee2b3a5a6"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font fontName="SansSerif"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{paciente_nome}.toUpperCase()]]></textFieldExpression>
-			</textField>
-			<textField pattern="" isBlankWhenNull="true">
-				<reportElement x="325" y="0" width="96" height="20" uuid="2aa43956-46f4-4d73-adf7-0bfdcfe6a111"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font fontName="SansSerif"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{paciente_contato}]]></textFieldExpression>
-			</textField>
-			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
-				<reportElement x="235" y="0" width="70" height="18" uuid="d7e23ea6-47bf-4618-b4ab-94f14024aace"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="SansSerif"/>
-				</textElement>
-				<textFieldExpression><![CDATA[(new SimpleDateFormat("dd/MM/yyyy")).format($F{paciente_data_nascimento})]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="2" y="0" width="48" height="18" uuid="9ee62087-3949-481a-a311-cb9b8c94137f"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="SansSerif"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{paciente_status_paciente}]]></textFieldExpression>
-			</textField>
-		</band>
-	</detail>
-	<columnFooter>
-		<band/>
-	</columnFooter>
-	<pageFooter>
-		<band height="20">
-			<textField>
-				<reportElement mode="Opaque" x="0" y="0" width="515" height="20" backcolor="#E6E6E6" uuid="5e23e599-cc17-4551-8dcb-462d40957491"/>
-				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font fontName="SansSerif" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
-			</textField>
-			<textField evaluationTime="Report">
-				<reportElement mode="Opaque" x="515" y="0" width="40" height="20" backcolor="#E6E6E6" uuid="e28a87ef-3374-42c1-96b9-b1715c34eaec"/>
-				<textElement verticalAlignment="Middle">
-					<font fontName="SansSerif" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement x="2" y="4" width="102" height="16" uuid="54f9d92d-6927-489a-a529-b754bdca8718"/>
-				<textElement>
-					<font fontName="SansSerif" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Total de Pacientes:]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="104" y="0" width="44" height="20" uuid="8137e8b5-3a0d-435a-a37d-fa30b71208c5"/>
-				<textElement verticalAlignment="Middle">
-					<font fontName="SansSerif" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$V{COLUMN_COUNT}]]></textFieldExpression>
-			</textField>
-			<rectangle>
-				<reportElement mode="Transparent" x="0" y="0" width="555" height="20" uuid="3d8bc0e7-cc76-4506-8d3d-fe4407315ecb"/>
-			</rectangle>
-		</band>
-	</pageFooter>
-	<summary>
-		<band/>
-	</summary>
+    <property name="ireport.zoom" value="2.0"/>
+    <property name="ireport.x" value="0"/>
+    <property name="ireport.y" value="0"/>
+    <property name="ireport.callouts" value="##Mon Mar 20 20:00:08 BRT 2017"/>
+    <style name="style1"/>
+    <parameter name="data_inicio" class="java.util.Date">
+        <defaultValueExpression><![CDATA[]]></defaultValueExpression>
+    </parameter>
+    <parameter name="data_fim" class="java.util.Date">
+        <defaultValueExpression><![CDATA[]]></defaultValueExpression>
+    </parameter>
+    <field name="id" class="java.lang.Long"/>
+    <field name="dataNascimento" class="java.util.Date"/>
+    <field name="nome" class="java.lang.String"/>
+    <field name="contato" class="java.lang.String"/>
+    <field name="email" class="java.lang.String"/>
+    <field name="status" class="br.com.studiolpilates.model.Status"/>
+    <field name="dataCadastro" class="java.sql.Timestamp"/>
+    <variable name="id_1" class="java.lang.Long" calculation="Sum">
+        <variableExpression><![CDATA[$F{id}]]></variableExpression>
+    </variable>
+    <variable name="email_1" class="java.lang.Integer" resetType="Page" calculation="Count">
+        <variableExpression><![CDATA[$F{email}]]></variableExpression>
+    </variable>
+    <variable name="nome_1" class="java.lang.Integer" resetType="Page" calculation="Count">
+        <variableExpression><![CDATA[$F{nome}]]></variableExpression>
+    </variable>
+    <variable name="status_1" class="java.lang.String">
+        <variableExpression><![CDATA[$F{status}]]></variableExpression>
+    </variable>
+    <group name="Group1">
+        <groupFooter>
+            <band/>
+        </groupFooter>
+    </group>
+    <group name="Group2">
+        <groupFooter>
+            <band/>
+        </groupFooter>
+    </group>
+    <group name="Group3">
+        <groupFooter>
+            <band/>
+        </groupFooter>
+    </group>
+    <group name="Group4">
+        <groupFooter>
+            <band/>
+        </groupFooter>
+    </group>
+    <background>
+        <band/>
+    </background>
+    <title>
+        <band height="93">
+            <staticText>
+                <reportElement x="134" y="15" width="287" height="39" uuid="deb71b7c-09d7-4d3d-875c-205093d4bff1"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="SansSerif" size="21" isBold="false"/>
+                </textElement>
+                <text><![CDATA[Relatório de Pacientes]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="186" y="54" width="182" height="20" uuid="ab47369c-ff13-441d-bf29-b03eb576f960"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="SansSerif"/>
+                </textElement>
+                <text><![CDATA[Sistema de Cadastro de Pacientes]]></text>
+            </staticText>
+            <textField pattern="EEEEE dd MMMMM yyyy">
+                <reportElement x="204" y="74" width="146" height="13" uuid="1ab69002-7f4e-416f-b4cf-970d0b73ce45"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="SansSerif" isBold="false" isItalic="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+            </textField>
+        </band>
+    </title>
+    <pageHeader>
+        <band height="25">
+            <staticText>
+                <reportElement x="0" y="0" width="50" height="15" uuid="181f554a-1003-4a29-acf4-f31aa35d6a87"/>
+                <textElement textAlignment="Left" verticalAlignment="Bottom">
+                    <font fontName="SansSerif" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Período:]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="93" y="0" width="15" height="15" uuid="4583e603-4f0f-43fc-8aee-ff816d16eb89"/>
+                <textElement verticalAlignment="Bottom">
+                    <font fontName="SansSerif"/>
+                </textElement>
+                <text><![CDATA[ a]]></text>
+            </staticText>
+            <textField isBlankWhenNull="true">
+                <reportElement x="50" y="0" width="54" height="15" uuid="0f40929c-8681-4ba3-bca6-feb3af85cc88"/>
+                <textElement textAlignment="Left" verticalAlignment="Bottom">
+                    <font fontName="SansSerif"/>
+                </textElement>
+                <textFieldExpression><![CDATA[(new SimpleDateFormat("dd/MM/yy")).format($P{data_inicio})]]></textFieldExpression>
+            </textField>
+            <elementGroup>
+                <textField isBlankWhenNull="true">
+                    <reportElement x="108" y="0" width="76" height="15" uuid="a702b60f-c696-4150-a3ad-6a0b71e6c2a5"/>
+                    <textElement verticalAlignment="Bottom">
+                        <font fontName="SansSerif"/>
+                    </textElement>
+                    <textFieldExpression><![CDATA[(new SimpleDateFormat("dd/MM/yy")).format($P{data_fim})]]></textFieldExpression>
+                </textField>
+            </elementGroup>
+        </band>
+    </pageHeader>
+    <columnHeader>
+        <band height="21">
+            <line>
+                <reportElement x="2" y="20" width="553" height="1" forecolor="#666666" uuid="cd951290-a2ea-495f-a5d0-73f5ca6a2c1a"/>
+            </line>
+            <staticText>
+                <reportElement x="78" y="0" width="108" height="20" uuid="455a652e-55ae-4553-95ff-c7fda70cc0f3"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="SansSerif" isItalic="false"/>
+                </textElement>
+                <text><![CDATA[NOME PACIENTE]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="224" y="0" width="91" height="20" uuid="732f1582-6030-4652-8e4f-dd7444c21a38"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="SansSerif"/>
+                </textElement>
+                <text><![CDATA[NASCIMENTO]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="315" y="0" width="84" height="20" uuid="af37c82f-a4c3-45e3-b464-dd2526061263"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="SansSerif"/>
+                </textElement>
+                <text><![CDATA[CONTATO]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="411" y="0" width="122" height="20" uuid="e1e3bb52-b4f7-4b7f-9602-3b13263271ee"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="SansSerif"/>
+                </textElement>
+                <text><![CDATA[E-MAIL]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="style1" mode="Transparent" x="2" y="0" width="58" height="21" forecolor="#000000" backcolor="#FFFFFF" uuid="392155b3-32b7-4336-be27-02a6db28aa5e"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+                    <font fontName="SansSerif" isBold="false" isStrikeThrough="false" isPdfEmbedded="false"/>
+                </textElement>
+                <text><![CDATA[STATUS]]></text>
+            </staticText>
+            <rectangle>
+                <reportElement mode="Transparent" x="0" y="0" width="555" height="20" uuid="47c12a60-e6c6-4358-912e-1760f66589b7"/>
+            </rectangle>
+        </band>
+    </columnHeader>
+    <detail>
+        <band height="20">
+            <line>
+                <reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="706f758c-56be-473d-8fd1-fc985761d11d"/>
+            </line>
+            <textField isBlankWhenNull="true">
+                <reportElement x="421" y="0" width="134" height="20" uuid="1c6e72c2-53d2-4787-b7e4-4a707b3921da"/>
+                <textElement verticalAlignment="Middle">
+                    <font fontName="SansSerif"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{email}.toLowerCase()]]></textFieldExpression>
+            </textField>
+            <textField isBlankWhenNull="true">
+                <reportElement isPrintRepeatedValues="false" mode="Transparent" x="78" y="0" width="146" height="20" uuid="eb417de6-3216-48ad-885b-360ee2b3a5a6"/>
+                <textElement textAlignment="Left" verticalAlignment="Middle">
+                    <font fontName="SansSerif"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{nome}.toUpperCase()]]></textFieldExpression>
+            </textField>
+            <textField pattern="" isBlankWhenNull="true">
+                <reportElement x="325" y="0" width="96" height="20" uuid="2aa43956-46f4-4d73-adf7-0bfdcfe6a111"/>
+                <textElement textAlignment="Left" verticalAlignment="Middle">
+                    <font fontName="SansSerif"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{contato}]]></textFieldExpression>
+            </textField>
+            <textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+                <reportElement x="234" y="0" width="70" height="18" uuid="0fc9ac98-da0a-4297-aecf-64101bb40d01"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="SansSerif"/>
+                </textElement>
+                <textFieldExpression><![CDATA[(new SimpleDateFormat("dd/MM/yyyy")).format($F{dataNascimento})]]></textFieldExpression>
+            </textField>
+            <textField pattern="">
+                <reportElement x="2" y="0" width="48" height="18" uuid="9ee62087-3949-481a-a311-cb9b8c94137f"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="SansSerif"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{status}]]></textFieldExpression>
+            </textField>
+        </band>
+    </detail>
+    <columnFooter>
+        <band/>
+    </columnFooter>
+    <pageFooter>
+        <band height="20">
+            <textField>
+                <reportElement mode="Opaque" x="0" y="0" width="515" height="20" backcolor="#E6E6E6" uuid="5e23e599-cc17-4551-8dcb-462d40957491"/>
+                <textElement textAlignment="Right" verticalAlignment="Middle">
+                    <font fontName="SansSerif" isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+            </textField>
+            <textField evaluationTime="Report">
+                <reportElement mode="Opaque" x="515" y="0" width="40" height="20" backcolor="#E6E6E6" uuid="e28a87ef-3374-42c1-96b9-b1715c34eaec"/>
+                <textElement verticalAlignment="Middle">
+                    <font fontName="SansSerif" isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement x="2" y="4" width="102" height="16" uuid="54f9d92d-6927-489a-a529-b754bdca8718"/>
+                <textElement>
+                    <font fontName="SansSerif" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Total de Pacientes:]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="104" y="0" width="44" height="20" uuid="8137e8b5-3a0d-435a-a37d-fa30b71208c5"/>
+                <textElement verticalAlignment="Middle">
+                    <font fontName="SansSerif" isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$V{COLUMN_COUNT}]]></textFieldExpression>
+            </textField>
+            <rectangle>
+                <reportElement mode="Transparent" x="0" y="0" width="555" height="20" uuid="3d8bc0e7-cc76-4506-8d3d-fe4407315ecb"/>
+            </rectangle>
+        </band>
+    </pageFooter>
+    <summary>
+        <band/>
+    </summary>
 </jasperReport>

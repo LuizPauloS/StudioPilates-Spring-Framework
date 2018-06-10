@@ -10,12 +10,12 @@ import org.springframework.web.servlet.i18n.FixedLocaleResolver;
 @SpringBootApplication
 public class StudiolpilatesApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(StudiolpilatesApplication.class, args);
-	}
-	
-	@Bean
-	public FixedLocaleResolver localeResolver(){
-		return new FixedLocaleResolver(new Locale("pt", "BR"));
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(StudiolpilatesApplication.class, args);
+    }
+
+    @Bean
+    public FixedLocaleResolver localeResolver() {
+        return new FixedLocaleResolver(new Locale("pt", "BR"));
+    }
 }

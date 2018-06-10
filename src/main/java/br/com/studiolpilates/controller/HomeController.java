@@ -8,9 +8,9 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/home")
 public class HomeController {
 
-	@RequestMapping
-	public ModelAndView init() {
-		ModelAndView mv = new ModelAndView("Home");
-		return mv;
-	}
+    @RequestMapping
+    public ModelAndView init() {
+        ModelAndView mv = new ModelAndView("Home");
+        return mv;
+    }
 }
