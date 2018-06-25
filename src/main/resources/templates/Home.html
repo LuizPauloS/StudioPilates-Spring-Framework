@@ -5,7 +5,7 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorator="layout/Layout">
     <head>
-        <title>Studio Le Pilates | Pesquisa de Pacientes</title>
+        <title>Studio Le Pilates</title>
     </head>
     <section layout:fragment="content">
         <div class="jumbotron">
@@ -21,62 +21,52 @@
             <div class="row">
                 <div class="col-md-4">
                     <h2>Cadastros</h2>
-                    <p class="text-align">Donec id elit non mi porta gravida at eget metus. Fusce
-                        dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh,
-                        ut fermentum massa justo sit amet risus. Etiam porta sem malesuada
-                        magna mollis euismod. Donec sed odio dui.</p>
+                    <p class="text-align">Cadastros de pacientes e de Pagamentos para controle e gerenciamento
+                        de quantidade total de atendimentos e os recebimentos pelo serviço efetuado.</p>
                     <p>
-                        <h5 sec:authorize-url="/pacientes/novo">Pacientes</h5>
                         <a class="btn btn-primary" th:href="@{/pacientes/novo}" sec:authorize-url="/pacientes/novo"
-                           role="button">Ir até cadastro »</a>
+                           role="button">Ir até cadastro de Pacientes »</a>
                     </p>
-                    <p>	
-                        <h5 sec:authorize-url="/pagamentos/novo">Pagamentos</h5>
+                    <br/>
+                    <p>
                         <a class="btn btn-primary" th:href="@{/pagamentos/novo}" sec:authorize-url="/pagamentos/novo"
-                           role="button">Ir até cadastro »</a>
+                           role="button">Ir até cadastro de Pagamentos »</a>
                     </p>
-                    <div class="col-xs-12">
-                        <hr/>
-                    </div>
                 </div>
                 <div class="col-md-4">
                     <h2>Pesquisas</h2>
-                    <p class="text-align">Donec sed odio dui. Cras justo odio, dapibus ac facilisis in,
-                        egestas eget quam. Vestibulum id ligula porta felis euismod semper.
-                        Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum
-                        nibh, ut fermentum massa justo sit amet risus.</p>
+                    <p class="text-align">Pesquisas por nome dos pacientes e pelo procedimento relacionados
+                        aos pagamentos efetuados ou ainda pendentes de recebimento. Podendo editar, atualizar e 
+                        excluir pacientes e pagamentos do cadastro. Para controle de cadastros no sistema.</p>
                     <p>
-                        <h5 sec:authorize-url="/pacientes">Pacientes</h5>
                         <a class="btn btn-primary" th:href="@{/pacientes}" sec:authorize-url="/pacientes"
-                           role="button">Ir até pesquisa »</a> 
+                           role="button">Ir até pesquisa de Pacientes »</a> 
                     </p>
+                    <br/>
                     <p>
-                        <h5 sec:authorize-url="/pagamentos">Pagamentos</h5>
                         <a class="btn btn-primary" th:href="@{/pagamentos}" sec:authorize-url="/pagamentos" 
-                           role="button">Ir até pesquisa »</a>
+                           role="button">Ir até pesquisa de Pagamentos »</a>
                     </p>
                 </div>
                 <div class="col-md-4">
                     <h2>Relatórios</h2>
-                    <p class="text-align">Donec sed odio dui. Cras justo odio, dapibus ac facilisis in,
-                        egestas eget quam. Vestibulum id ligula porta felis euismod semper.
-                        Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum
-                        nibh, ut fermentum massa justo sit amet risus.</p>
+                    <p class="text-align">Relatório de Pacientes cadastrados no sistema e de Pagamentos 
+                        já efetuados e daqueles que ainda se encontram pendentes de pagamentos, para controle e 
+                        gerenciamento das movimentações financeiras.</p>
                     <p>
-                        <h5 sec:authorize-url="/relatorios/pacientes">Pacientes</h5>
                         <a class="btn btn-primary" th:href="@{/relatorios/pacientes}" sec:authorize-url="/relatorios/pacientes"
-                           role="button">Ir até relatório »</a> 
+                           role="button">Ir até relatório de Pacientes »</a> 
                     </p>
+                    <br/>
                     <p>
-                        <h5 sec:authorize-url="/relatorios/pagamentos">Pagamentos</h5>
                         <a class="btn btn-primary" th:href="@{/relatorios/pagamentos}" sec:authorize-url="/relatorios/pagamentos"
-                           role="button">Ir até relatório »</a>
+                           role="button">Ir até relatório de Pagamentos »</a>
                     </p>
                 </div>
             </div>
             <hr />
             <footer style="text-align: center;">
-                <p>© Studio Le Pilates 2017 - Todos os direitos reservados!</p>
+                <p>© Studio Le Pilates 2018 - Todos os direitos reservados!</p>
             </footer>
         </div>
     </section>

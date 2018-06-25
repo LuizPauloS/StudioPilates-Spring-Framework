@@ -4,7 +4,7 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorator="layout/Layout">
     <head>
-        <title>Relatório Pagamentos | StudioL Pilates</title>
+        <title>Studio Le Pilates | Relatório Pagamentos</title>
     </head>
     <section layout:fragment="content">
         <div class="container">
@@ -15,7 +15,7 @@
                     </div>
                 </div>
                 <div class="panel-body">                  
-                    <form action="#" th:action="@{/relatorios/pagamentos}" 
+                    <form action="#" th:action="@{/relatorios/pagamentos-cadastrados}" 
                           th:object="${relatorioPagamentoFilter}" method="post" class="form-horizontal">
                         <div layout:include="layout/Message"></div>
                         <div class="campos col-xs-12 col-sm-6 col-lg-6">

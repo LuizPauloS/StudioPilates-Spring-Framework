@@ -16,29 +16,28 @@ public class RelatorioPagamentoService {
     private PagamentoRepository pagamentoRepository;
 
     public List<Pagamento> buscaTodosPagamentos(RelatorioPagamentoFilter filter) {
-        return this.pagamentoRepository.findByPagamentos(filter.getStatusRepasse(),
+        return this.pagamentoRepository.findByPagamentos(filter.getStatusRepasse().toUpperCase(),
                 filter.getDataInicial(), filter.getDataFinal());
     }
 
     public List<Pagamento> buscaPagamentosPaciente(RelatorioPagamentoFilter filter) {
-        return this.pagamentoRepository.findByPagamentosPorPaciente(filter.getStatusRepasse(), 
+        return this.pagamentoRepository.findByPagamentosPorPaciente(filter.getStatusRepasse().toUpperCase(), 
                 Long.valueOf(filter.getNomePaciente()), filter.getDataInicial(), filter.getDataFinal());
     }
 
     public List<Pagamento> buscaPagamentosConvenio(RelatorioPagamentoFilter filter) {
-        return this.pagamentoRepository.findByPagamentosPorConvenio(filter.getStatusRepasse(), filter.getNomeConvenio(),
-                filter.getDataInicial(), filter.getDataFinal());
+        return this.pagamentoRepository.findByPagamentosPorConvenio(filter.getStatusRepasse().toUpperCase(), 
+                filter.getNomeConvenio(), filter.getDataInicial(), filter.getDataFinal());
     }
     
     public List<Pagamento> buscaTodosPagamentosConvenioEPaciente(RelatorioPagamentoFilter filter) {
-        return this.pagamentoRepository.findByPagamentosPorConvenioPaciente(filter.getStatusRepasse(),
+        return this.pagamentoRepository.findByPagamentosPorConvenioPaciente(filter.getStatusRepasse().toUpperCase(),
                 Long.valueOf(filter.getNomePaciente()), filter.getNomeConvenio(), filter.getDataInicial(), 
                 filter.getDataFinal());
     }
 
-    public ModelAndView preencheModelAndViewReport(List<Pagamento> pagamentos,
+    public ModelAndView preencheModelAndViewReport(List<Pagamento> pagamentos, ModelAndView m,
             RelatorioPagamentoFilter relatorioPagamentoFilter, String relatorio) {
-        ModelAndView m = new ModelAndView();
         if (!pagamentos.isEmpty()) {
             List<RelatorioPagamentoFilter> data = getListReportPagamentos(pagamentos);
             m.addObject("dataSource", data);

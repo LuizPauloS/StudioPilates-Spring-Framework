@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="br.com.studiolpilates.StudiolpilatesApplicationTests" time="0.047" tests="1" errors="0" skipped="0" failures="0">
+<testsuite name="br.com.studiolpilates.StudiolpilatesApplicationTests" time="0.073" tests="1" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_161\jre\bin"/>
@@ -15,7 +15,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.os.patch.level" value=""/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-    <property name="user.dir" value="C:\Users\luiz.silva\Documents\NetBeansProjects\studiolpilates"/>
+    <property name="user.dir" value="C:\Users\luiz.silva\Documents\ProjetosSourceTree\studioLPilates-spring-framework"/>
     <property name="java.runtime.version" value="1.8.0_161-b12"/>
     <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
     <property name="java.endorsed.dirs" value="C:\Program Files\Java\jdk1.8.0_161\jre\lib\endorsed"/>
@@ -28,7 +28,7 @@
     <property name="maven.ext.class.path" value="C:\Program Files\NetBeans 8.2\java\maven-nblib\netbeans-eventspy.jar"/>
     <property name="classworlds.conf" value="C:\Program Files\NetBeans 8.2\java\maven\bin\m2.conf"/>
     <property name="sun.jnu.encoding" value="Cp1252"/>
-    <property name="java.library.path" value="C:\Program Files\Java\jdk1.8.0_161\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\PostgreSQL\pg96\bin;C:\Program Files\PuTTY\;C:\Program Files\Apache Software Foundation\Tomcat 8.5\;C:\Program Files\SourceGear\Common\DiffMerge\;C:\Program Files\Microsoft VS Code\bin;C:\Users\luiz.silva\AppData\Roaming\npm;."/>
+    <property name="java.library.path" value="C:\Program Files\Java\jdk1.8.0_161\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\Git\cmd;C:\PostgreSQL\pg96\bin;C:\Program Files\Apache Software Foundation\Tomcat 8.5\;C:\Program Files\OpenVPN\bin;C:\Program Files\PuTTY\;;C:\Program Files\Microsoft VS Code\bin;C:\Program Files\Apache Software Foundation\Tomcat 8.5\;."/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.class.version" value="52.0"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
@@ -60,5 +60,5 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase name="contextLoads" classname="br.com.studiolpilates.StudiolpilatesApplicationTests" time="0.047"/>
+  <testcase name="contextLoads" classname="br.com.studiolpilates.StudiolpilatesApplicationTests" time="0.073"/>
 </testsuite>
