@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/Layout">
+    <head>
+        <title>Relatório Pagamentos | StudioL Pilates</title>
+    </head>
+    <section layout:fragment="content">
+        <div class="container">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="clearfix">
+                        <h1 class="panel-title aw-title-panel">Relatório de Pagamentos Pendentes</h1>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <form action="#" th:action="@{/relatorios/pagamentos-pendentes}" th:object="${relatorioPagamentoFilter}" 
+                          method="post" class="form-horizontal">
+<!--                        <div class="campos col-xs-12 col-sm-6 col-lg-6">
+                            <label for="nomePaciente" class="control-label">Paciente</label> 
+                            <input type="text" class="form-control" autofocus="autofocus"
+                                   id="nomePaciente" placeholder="Informe a paciente" th:field="*{nomePaciente}"/>
+                        </div>
+                        <div class="campos col-xs-12 col-sm-6 col-lg-6">
+                            <label for="nomeConvenio" class="control-label">Convênio</label> 
+                            <input type="text" class="form-control" autofocus="autofocus"
+                                   id="nomeConvenio" placeholder="Informe convênio" th:field="*{nomeConvenio}"/>
+                        </div>-->
+                        <div class="campos col-xs-12 col-sm-6 col-lg-6">
+                            <label for="inicial" class="control-label">Data Inicial</label> 
+                            <input type="text" class="form-control" id="inicial" 
+                                   placeholder="Informe a data inicial" data-provide="datepicker" 
+                                   data-date-format="dd/mm/yyyy" data-date-language="pt-BR" 
+                                   data-date-autoclose="true" data-date-today-highlight="true" 
+                                   data-date-orientation="bottom" th:field="*{dataInicial}"/>
+                        </div>
+                        <div class="campos col-xs-12 col-sm-6 col-lg-6">
+                            <label for="final" class="control-label">Data Final</label> 
+                            <input type="text" class="form-control" id="final" 
+                                   data-provide="datepicker" data-date-format="dd/mm/yyyy"
+                                   data-date-language="pt-BR" data-date-autoclose="true"
+                                   data-date-today-highlight="true" data-date-orientation="bottom"
+                                   placeholder="Informe a data final" th:field="*{dataFinal}"/>
+                        </div>
+<!--                        <div class="campos col-xs-12 col-sm-4 col-lg-4">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1"/>
+                                <label for="exampleRadios1">
+                                    EFETUADO
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2"/>
+                                <label for="exampleRadios2">
+                                    PENDENTE
+                                </label>
+                            </div>
+                        </div>-->
+                        <div class="col-sm-12">
+                            <button type="submit" class="btn btn-primary col-xs-12 col-sm-3 col-lg-3 botao">
+                                Pesquisar
+                                <i class="glyphicon glyphicon-search"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</html>

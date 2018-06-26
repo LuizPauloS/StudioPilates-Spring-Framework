@@ -55,8 +55,10 @@
                         <ul class="dropdown-menu">
                             <li sec:authorize-url="/relatorios/pacientes"><a th:href="@{/relatorios/pacientes}">
                                     <span class="glyphicon glyphicon-user icone-menu"></span>Pacientes</a></li>
-                            <li sec:authorize-url="/relatorios/pagamentos"><a th:href="@{/relatorios/pagamentos}">
-                                    <span class="glyphicon glyphicon-credit-card icone-menu"></span>Pagamentos</a></li>
+                            <li sec:authorize-url="/relatorios/pagamentos"><a th:href="@{/relatorios/efetuados}">
+                                    <span class="glyphicon glyphicon-credit-card icone-menu"></span>Pag. Efetuados</a></li>
+                            <li sec:authorize-url="/relatorios/pagamentos"><a th:href="@{/relatorios/pendentes}">
+                                    <span class="glyphicon glyphicon glyphicon-list-alt icone-menu"></span>Pag. Pendentes</a></li>        
                         </ul>
                     </li>
                     <li>

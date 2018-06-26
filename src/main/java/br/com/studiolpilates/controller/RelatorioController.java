@@ -1,9 +1,7 @@
 package br.com.studiolpilates.controller;
 
-import br.com.studiolpilates.model.FormaPagamento;
 import br.com.studiolpilates.model.Paciente;
 import br.com.studiolpilates.model.Pagamento;
-import br.com.studiolpilates.model.StatusRepasse;
 import br.com.studiolpilates.model.filter.RelatorioPacienteFilter;
 import br.com.studiolpilates.model.filter.RelatorioPagamentoFilter;
 import br.com.studiolpilates.repository.PacienteRepository;
@@ -39,9 +37,16 @@ public class RelatorioController {
         return mv;
     }
 
-    @RequestMapping("/pagamentos")
-    public ModelAndView getRelatorioPagamentos() {
+    @RequestMapping("/efetuados")
+    public ModelAndView getRelatorioPagamentosEfetuados() {
         ModelAndView mv = new ModelAndView("relatorios/RelatorioPagamentos");
+        mv.addObject("relatorioPagamentoFilter", new RelatorioPagamentoFilter());
+        return mv;
+    }
+    
+    @RequestMapping("/pendentes")
+    public ModelAndView getRelatorioPagamentosPendentes() {
+        ModelAndView mv = new ModelAndView("relatorios/RelatorioPagamentosPendentes");
         mv.addObject("relatorioPagamentoFilter", new RelatorioPagamentoFilter());
         return mv;
     }
@@ -78,7 +83,8 @@ public class RelatorioController {
         return preencheModelAndViewReport(pagamentos, relatorioPagamentoFilter, "relatorio_pagtos_pendentes");
     }
     
-    private ModelAndView preencheModelAndViewReport(List<Pagamento> pagamentos, RelatorioPagamentoFilter relatorioPagamentoFilter, String relatorio) {
+    private ModelAndView preencheModelAndViewReport(List<Pagamento> pagamentos, 
+            RelatorioPagamentoFilter relatorioPagamentoFilter, String relatorio) {
         ModelAndView m = new ModelAndView();
         if (!pagamentos.isEmpty()) {
             List<RelatorioPagamentoFilter> data = getListReportPagamentos(pagamentos);
