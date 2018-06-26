@@ -64,19 +64,20 @@ public class RelatorioController {
         return m;
     }
 
-//  @RequestMapping(value={"/pagamentos-efetuados"}, method={org.springframework.web.bind.annotation.RequestMethod.POST})
-//  public ModelAndView generateReportPagamentosEfetuados(@ModelAttribute RelatorioPagamentoFilter relatorioPagamentoFilter) throws ParseException {
-//    List<Pagamento> pagamentos = pagamentoRepository.findByDataCadastroBetweenDataInicioAndDataFimEfetuados(relatorioPagamentoFilter.getDataInicial(), relatorioPagamentoFilter
-//      .getDataFinal());
-//    return preencheModelAndViewReport(pagamentos, relatorioPagamentoFilter, "relatorio_pagtos_efetuados");
-//  }
-//  
-//  @RequestMapping(value={"/pagamentos-pendentes"}, method={org.springframework.web.bind.annotation.RequestMethod.POST})
-//  public ModelAndView generateReportPagamentosPendentes(@ModelAttribute RelatorioPagamentoFilter relatorioPagamentoFilter) throws ParseException {
-//    List<Pagamento> pagamentos = pagamentoRepository.findByDataCadastroBetweenDataInicioAndDataFimPendentes(relatorioPagamentoFilter.getDataInicial(), relatorioPagamentoFilter
-//      .getDataFinal());
-//    return preencheModelAndViewReport(pagamentos, relatorioPagamentoFilter, "relatorio_pagtos_pendentes");
-//  }
+    @RequestMapping(value = "/pagamentos-efetuados", method = RequestMethod.POST)
+    public ModelAndView generateReportPagamentosEfetuados(@ModelAttribute RelatorioPagamentoFilter relatorioPagamentoFilter) throws ParseException {
+        List<Pagamento> pagamentos = pagamentoRepository.findByDataCadastroBetweenDataInicioAndDataFimEfetuados(relatorioPagamentoFilter.getDataInicial(), relatorioPagamentoFilter
+                .getDataFinal());
+        return preencheModelAndViewReport(pagamentos, relatorioPagamentoFilter, "relatorio_pagtos_efetuados");
+    }
+
+    @RequestMapping(value = {"/pagamentos-pendentes"}, method = {org.springframework.web.bind.annotation.RequestMethod.POST})
+    public ModelAndView generateReportPagamentosPendentes(@ModelAttribute RelatorioPagamentoFilter relatorioPagamentoFilter) throws ParseException {
+        List<Pagamento> pagamentos = pagamentoRepository.findByDataCadastroBetweenDataInicioAndDataFimPendentes(relatorioPagamentoFilter.getDataInicial(), relatorioPagamentoFilter
+                .getDataFinal());
+        return preencheModelAndViewReport(pagamentos, relatorioPagamentoFilter, "relatorio_pagtos_pendentes");
+    }
+    
     private ModelAndView preencheModelAndViewReport(List<Pagamento> pagamentos, RelatorioPagamentoFilter relatorioPagamentoFilter, String relatorio) {
         ModelAndView m = new ModelAndView();
         if (!pagamentos.isEmpty()) {
